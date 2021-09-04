@@ -1,9 +1,14 @@
 import logo from './logo.svg';
+import Test from './Test.js';
 import './App.css';
+import { Fragment } from 'react';
 
 function App() {
   return (
-        <div>hello world</div>
+    <div>
+      App Component
+      <Test />
+      </div>
   );
 }
 
