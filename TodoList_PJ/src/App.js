@@ -46,12 +46,39 @@ class App extends React.Component{
     }
   }
 
+  handleToggle=(id)=>{
+    const {todos} = this.state;
+    const index = todos.findIndex(todo => todo.id === id);
+    const selected = todos[index];
+    
+    const nextTodos = [...todos]; // 배열 전체 shallow 복사
+
+    // 특정 배열요소 데이터 수정
+    nextTodos[index] = {
+      ...selected,
+      checked: !selected.checked
+    }
+
+    this.setState({
+      todos:nextTodos
+    });
+  }
+
+  handleRemove=(id)=>{
+    const {todos} = this.state;
+    this.setState({
+      todos: todos.filter(todo=>todo.id !== id)
+    });
+  }
+
   render(){
     const {input, todos} = this.state;
     const{
       handleChange,
       handleCreate,
-      handleKeyPress
+      handleKeyPress,
+      handleToggle,
+      handleRemove
     } = this;
 
     return(
@@ -63,7 +90,7 @@ class App extends React.Component{
           onCreate={handleCreate}
         />
       }>
-        <TodoItemList todos={todos}/>
+        <TodoItemList todos={todos}onToggle={handleToggle} onRemove={handleRemove}/>
       </TodoListTemplate>
     );
   }

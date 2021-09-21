@@ -10,6 +10,11 @@ import './TodoItem.css';
 */
 
 class TodoItem extends React.Component{
+
+    shouldComponentUpdate(nextProps, nextStates){
+        return this.props.checked !== nextProps.checked;
+    }
+    
     render(){
         const{text, checked, id, onToggle, onRemove} = this.props;
         console.log('text: ' + text);

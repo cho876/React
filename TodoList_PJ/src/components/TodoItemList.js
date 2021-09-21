@@ -3,6 +3,11 @@ import TodoItem from './TodoItem';
 
 
 class TodoItemList extends React.Component{
+
+    shouldComponentUpdate(nextProps, nextState){
+        return this.props.todos != nextProps.todos;
+    }
+
     render(){
         const{todos, onToggle, onRemove} = this.props;
         const todoList = todos.map(
@@ -11,6 +16,7 @@ class TodoItemList extends React.Component{
                     {...todo}
                     onToggle={onToggle}
                     onRemove={onRemove}
+                    key={todo.id}
                 />
             )
         );
