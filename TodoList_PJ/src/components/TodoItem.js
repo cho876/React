@@ -14,19 +14,17 @@ class TodoItem extends React.Component{
     shouldComponentUpdate(nextProps, nextStates){
         return this.props.checked !== nextProps.checked;
     }
-    
+
     render(){
-        const{text, checked, id, onToggle, onRemove} = this.props;
-        console.log('text: ' + text);
-        console.log('checked: ' + checked);
-        console.log('id: ' + id);
+        const{text, checked, color, id, onToggle, onRemove} = this.props;
+
         return(
             <div className='todo-item' onClick={()=>onToggle(id)}>
                 <div className='remove' onClick={(e)=>{
                     e.stopPropagation();    // onToggle 실행 X
                     onRemove(id)}
                 }>&times;</div>
-                <div className={"todo-text ${checked ? ' checked':''}"}>
+                <div className={"todo-text ${checked ? ' checked':''}"} style={{color}}>
                     <div>{text}</div>
                 </div>
                 {
